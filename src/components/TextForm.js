@@ -50,20 +50,20 @@ export default function TextForm(props) {
             {/* <label for="textBox" class="form-label">Enter Text Here</label> */}
             <textarea className="form-control"  id="textBox" onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'#231d48':'white', color:props.mode==='dark'?'white':'black'}} value={text} rows="7"></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert To Uppercase</button>
-        <button className="btn btn-primary mx-2" onClick={handleLowClick}>Convert To Lowercase</button>
-        <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
-        <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>
-        <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Remove Extra Space</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>Convert To Uppercase</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleLowClick}>Convert To Lowercase</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleClearClick}>Clear Text</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleCopy}>Copy Text</button>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleExtraSpaces}>Remove Extra Space</button>
 
         
     </div>
     <div className="container my-3" style={{color: props.mode==='dark'?'white':'black'}}>
         <h2 >Your Text Summary</h2>
-        <b>{text.split(" ").length}</b><p> Words </p> <b>{text.length}</b> <p style={{color: props.mode==='dark'?'white':'black'}}>Characters</p>
+        <b>{text.split(" ").filter((element)=>{return element.length!==0}).length}</b><p> Words </p> <b>{text.length}</b> <p style={{color: props.mode==='dark'?'white':'black'}}>Characters</p>
         <p>{0.008* text.split(" ").length} Minutes To Read</p>
         <h2>Preview Of Your Text</h2>
-        <p>{text.length>0?text:"Enter Text In The TextBox To Preview Here "}</p>
+        <p>{text.length>0?text:"Nothing To Preview!! "}</p>
     </div>
     </>
   )
